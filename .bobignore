@@ -1,0 +1,30 @@
+# Environnements et caches Python
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# Git
+.git/
+
+# Vrais secrets : Bob ne doit jamais les lire
+.env
+.env.local
+.env.*.local
+
+# Fichiers lourds sans intérêt pour Bob
+bob_sessions/
+docs/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.pdf
+*.pptx
+*.mp4
+*.zip
