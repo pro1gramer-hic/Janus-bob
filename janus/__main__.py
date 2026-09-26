@@ -5,11 +5,12 @@ import json
 import sys
 from pathlib import Path
 
-from janus import scan_config, scan_secrets
+from janus import scan_config, scan_docs, scan_secrets
 
 SCANNERS = {
     "config": scan_config.scan,
     "secrets": scan_secrets.scan,
+    "docs": scan_docs.scan,
 }
 
 SEVERITY_ORDER = ["critical", "high", "medium", "low"]
