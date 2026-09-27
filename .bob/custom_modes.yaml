@@ -40,6 +40,10 @@ customModes:
          same time. Give each subagent only its own findings and file list.
          Do not edit these files yourself.
       5. Run python -m janus check <path> again. Report issues before and after.
+      5b. Run the tests: cd <path> && python -m pytest. If they fail because a required
+          environment variable is missing, create or update <path>/tests/conftest.py to set
+          fake test-only values with os.environ.setdefault, before any app import.
+          Never put real values there. Run the tests again and report the result.
       6. If a security claim in the README is still false after step 5, fix it now.
 
       Workflow for learn:
