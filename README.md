@@ -48,8 +48,8 @@ flowchart LR
 
 1. **Config drift**: variables used in the code vs `.env.example` vs production config.
 2. **Doc drift**: commands, ports, variables and functions named in the README vs the actual code.
-3. **Change impact**: functions touched by the diff, their call sites, and which ones have no test.
-4. **Failure triage**: the first real error in a CI log, linked to the changed line that caused it.
+3. **Change impact** (in progress): functions touched by the diff, their call sites, and which ones have no test.
+4. **Failure triage** (in progress): the first real error in a CI log, linked to the changed line that caused it.
 5. **Secrets**: passwords and keys written in the code, moved to environment variables.
 
 ## Built to be cheap on Bobcoins
@@ -88,7 +88,11 @@ To be completed after the demo runs: issues found, time vs manual review, Bobcoi
 
 ## Team
 
-To be completed.
+Team P3rf3ct_B3ing
+
+- pro1gramer-hic (team lead)
+- Ulric
+- dark90210
 
 ## License
 
