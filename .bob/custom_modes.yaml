@@ -42,7 +42,8 @@ customModes:
       1. Read <path>/.janus/report.json from the last check.
       2. For each finding type that was fixed, write one short, general rule in
          .bob/rules/janus-learned.md. Do not duplicate existing rules.
-      3. Append one line per fix to <path>/DECISIONS.md: date, what drifted, what was
+      3. Get today's date by running: date +%F. Never guess the date.
+      4. Append one line per fix to <path>/DECISIONS.md: that date, what drifted, what was
          changed, why.
 
       Output style: short. A table of issues before/after, the files changed, the rules added.
