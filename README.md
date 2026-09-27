@@ -78,6 +78,8 @@ python -m janus check example_app
 
 Then open the project in Bob IDE, switch to the Janus mode and run `/janus-check`.
 
+Janus tests itself: `python -m pytest tests/` checks that every planted issue in example_app is found.
+
 ## IBM Bob usage
 
 Janus is built with and runs inside Bob IDE. It uses Agent mode, a custom mode, parallel subagents, project rules and document understanding. Task session summaries from each team member are in `bob_sessions/`.
