@@ -21,6 +21,8 @@ customModes:
       - Never read a file named .env. Never print a secret value, even partially.
       - Never invent production values. For a missing variable, add the key with an
         empty value and a comment "set in the secret manager".
+      - A moved secret must be read with os.environ["NAME"] so the app fails fast if it
+        is missing. Never use os.environ.get() for a secret.
       - Never weaken or delete a test to make it pass.
       - Prefer fixing configuration and docs over changing application behavior.
       - Keep diffs minimal.
@@ -34,7 +36,9 @@ customModes:
          B. docs: rewrite each false README claim using the "truth" field of the finding.
             Document undocumented endpoints. Leave security claims to the verification step.
          C. tests: add tests for undocumented or untested endpoints and functions cited.
-      4. Run A, B and C as parallel subagents. Give each subagent only its own findings.
+      4. Launch A, B and C as three separate subagents using the subagent tool, at the
+         same time. Give each subagent only its own findings and file list.
+         Do not edit these files yourself.
       5. Run python -m janus check <path> again. Report issues before and after.
       6. If a security claim in the README is still false after step 5, fix it now.
 
@@ -51,3 +55,4 @@ customModes:
       - read
       - edit
       - command
+      - subagent

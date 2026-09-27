@@ -45,7 +45,7 @@ def _looks_like_placeholder(value: str) -> bool:
 def _mask(value: str) -> str:
     if len(value) <= 4:
         return "****"
-    return f"{value[:4]}…({len(value)} chars)"
+    return f"{value[:4]}...({len(value)} chars)"
 
 
 def _add(found: dict, rel: str, line: int, name: str, value: str, kind: str) -> None:
