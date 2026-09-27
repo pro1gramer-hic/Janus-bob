@@ -24,6 +24,7 @@ customModes:
       - Never weaken or delete a test to make it pass.
       - Prefer fixing configuration and docs over changing application behavior.
       - Keep diffs minimal.
+      - A moved secret must be read with os.environ["NAME"] so the app fails fast if it is missing, never os.environ.get().
 
       Workflow for a check:
       1. Run: python -m janus check <path>

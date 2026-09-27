@@ -6,6 +6,5 @@ settings = {
     "PORT": int(os.getenv("PORT", "8000")),
 }
 
-# Temporary, to make login work locally
-JWT_SECRET = "taskly-demo-hardcoded-jwt-secret-7f3a9c"
-ADMIN_PASSWORD = "admin123"
+JWT_SECRET = os.environ.get("JWT_SECRET", "")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "")

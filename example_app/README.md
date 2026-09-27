@@ -4,23 +4,23 @@ A small task tracking API.
 
 ## Setup
 
-Set the `DB_URL` environment variable to your database connection string.
+Set the `DATABASE_URL` environment variable to your database connection string.
 
 ## Run
 
 ```bash
-python run.py
+python -m uvicorn app.main:app
 ```
 
-The API serves on port 5000.
+The API serves on port 8000.
 
 ## Endpoints
 
 - `GET /health`: health check
 - `POST /tasks`: create a task
 - `GET /tasks/{id}`: get a task
-- `GET /stats`: task statistics
+- `GET /report/top`: top tasks report
 
 ## Security
 
-No secrets are stored in the code. All credentials come from environment variables.
+All credentials are read from environment variables. See `.env.example` for the full list of required variables.
