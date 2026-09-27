@@ -124,7 +124,7 @@ def scan(root) -> dict:
             if path.name == ".env":
                 continue  # the real .env is never read
             files_scanned += 1
-            rel = str(path.relative_to(root))
+            rel = path.relative_to(root).as_posix()
             if suffix == ".py":
                 _scan_python(path, rel, found)
                 _scan_text(path, rel, found, check_assignments=False)

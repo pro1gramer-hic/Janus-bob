@@ -14,6 +14,9 @@ def iter_files(root: Path, suffix: str):
 
 
 def _is_os_environ(node) -> bool:
+    """os.environ, or a bare `environ` imported with `from os import environ`."""
+    if isinstance(node, ast.Name):
+        return node.id == "environ"
     return (
         isinstance(node, ast.Attribute)
         and node.attr == "environ"
@@ -41,7 +44,7 @@ def find_env_usages(root: Path) -> list:
             tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
         except SyntaxError:
             continue
-        rel = str(path.relative_to(root))
+        rel = path.relative_to(root).as_posix()
         for node in ast.walk(tree):
             name, mode = None, None
             if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.args:
@@ -52,6 +55,10 @@ def find_env_usages(root: Path) -> list:
                     name = _const_str(node.args[0])
                     has_default = len(node.args) > 1 or any(k.arg == "default" for k in node.keywords)
                     mode = "default" if has_default else "nullable"
+            elif isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "getenv" and node.args:
+                name = _const_str(node.args[0])
+                has_default = len(node.args) > 1 or any(k.arg == "default" for k in node.keywords)
+                mode = "default" if has_default else "nullable"
             elif isinstance(node, ast.Subscript) and _is_os_environ(node.value):
                 name = _const_str(node.slice)
                 mode = "strict"
@@ -84,7 +91,7 @@ def scan(root) -> dict:
 
     # Deployment configs: any *.env file except the real .env, which is never read
     deploy_configs = {
-        str(p.relative_to(root)): read_env_file(p)
+        p.relative_to(root).as_posix(): read_env_file(p)
         for p in iter_files(root, ".env")
         if p.name != ".env"
     }
